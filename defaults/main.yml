@@ -1,0 +1,36 @@
+---
+dst_user: "{{ remote_user | default('ubuntu') }}"
+dst_apt_packages:
+  - gfortran
+  - git
+  - libblas-dev
+  - liblapack-dev
+  - libmysqlclient-dev
+  - mysql-common
+  - python-dev
+  - python-numpy
+  - python-pycurl
+  - python-scipy
+  - sqlite3
+matplotlib_apt_packages:
+  - libfreetype6-dev
+  - libpng12-dev
+  - python-matplotlib
+dst_pip_packages:
+  - ipython
+  - pandas
+  - psycopg2
+  - pyzmq
+  - scikit-learn
+  - tornado
+dst_r_packages:
+  - dplyr
+  - forecast
+  - ggplot2
+  - lubridate
+  - plyr
+  - sqldf
+  - zoo
+
+
+

@@ -1,0 +1,38 @@
+---
+- name: Install dst command-line tool
+  pip: name=dst state=latest
+
+- name: Install packages
+  apt: pkg={{item}} state=latest
+  with_items: dst_apt_packages
+
+- name: numpy - upgrade
+  pip: name=numpy state=latest
+
+- name: matplotlib - install
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items: matplotlib_apt_packages
+
+- name: Install Python packages
+  pip: name={{ item }} state=latest
+  with_items: dst_pip_packages
+
+- name: R - add keyserver
+  shell: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+
+- name: R - add repo
+  apt_repository: repo='{{ r_repository }}' state=present
+
+- name: R - install
+  apt: pkg=r-base-dev state=latest update_cache=yes
+
+- name: Install R packages
+  shell: echo "install.packages(c('{{item}}'),repos='http://cran.us.r-project.org')" | R --slave --no-save --no-restore-history
+  with_items: dst_r_packages
+
+- name: Make sure that the repos directory exists
+  file: path=/home/{{ dst_user }}/repos state=directory owner={{ dst_user }} group={{ dst_user }}
+
+- name: Download bundles
+  git: repo=https://github.com/DataScienceToolbox/data-science-toolbox.git dest=/usr/lib/data-science-toolbox
