@@ -12,7 +12,8 @@ Requirements
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+The remote_user will be used as default for the toolkit installation.
+You can override the parameter with `dst_user` if you want to.
 
     - hosts: servers
       remote_user: ubuntu
