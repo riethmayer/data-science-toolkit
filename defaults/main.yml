@@ -4,25 +4,31 @@ dst_apt_packages:
   - gfortran
   - git
   - libblas-dev
+  - libffi-dev
   - liblapack-dev
   - libmysqlclient-dev
+  - libssl-dev
   - mysql-common
   - python-dev
   - python-numpy
   - python-pycurl
   - python-scipy
   - sqlite3
+
 matplotlib_apt_packages:
   - libfreetype6-dev
   - libpng12-dev
   - python-matplotlib
+
 dst_pip_packages:
+  - requests[security]
   - ipython
   - pandas
   - psycopg2
   - pyzmq
   - scikit-learn
   - tornado
+
 dst_r_packages:
   - dplyr
   - forecast
@@ -31,6 +37,3 @@ dst_r_packages:
   - plyr
   - sqldf
   - zoo
-
-
-
